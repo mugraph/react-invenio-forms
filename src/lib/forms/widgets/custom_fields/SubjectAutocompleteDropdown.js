@@ -14,6 +14,7 @@ export class SubjectAutocompleteDropdown extends Component {
         key: subject.id ?? subject.subject,
         ...(subject.id ? { id: subject.id } : {}),
         subject: subject.subject,
+        ...(subject.meta?.matched_synonym ? { synonym: subject.meta.matched_synonym } : {}),
       };
     });
 
@@ -39,6 +40,7 @@ export class SubjectAutocompleteDropdown extends Component {
       disabled,
       ...uiProps
     } = this.props;
+    
     const labelContent = label ? (
       <FieldLabel htmlFor={fieldPath} icon={icon} label={label} />
     ) : (
